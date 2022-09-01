@@ -1,3 +1,4 @@
-controllers:
-    resource: ../src/Controller/
-    type: attribute
+
+  #index:
+       #path: /
+       #controller: APP\Controller\DefaultController::index
