@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\FournisseurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: FournisseurRepository::class)]
@@ -28,8 +30,17 @@ class Fournisseur
     #[ORM\Column(length: 255)]
     private ?string $postal_code = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    #[ORM\OneToMany(mappedBy: 'fournisseur', targetEntity: Product::class, orphanRemoval: true)]
+    private Collection $product;
+
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'fournisseur')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->product = new ArrayCollection();
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -96,14 +107,59 @@ class Fournisseur
         return $this;
     }
 
-    public function getCategory(): ?string
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProduct(): Collection
     {
-        return $this->category;
+        return $this->product;
     }
 
-    public function setCategory(string $category): self
+    public function addProduct(Product $product): self
     {
-        $this->category = $category;
+        if (!$this->product->contains($product)) {
+            $this->product->add($product);
+            $product->setFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->product->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getFournisseur() === $this) {
+                $product->setFournisseur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->addFournisseur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeFournisseur($this);
+        }
 
         return $this;
     }

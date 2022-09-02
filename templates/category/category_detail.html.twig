@@ -6,9 +6,11 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-12 text-center">
-                <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ fournisseur.name }}</div>
-                <h2>Ville : {{ fournisseur.city }}</h2>
-                <p>{{ fournisseur.description }}</p>
+                <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ category.name }}</div>
+
+                {% for  %}
+                <h2>Liste des fournisseurs : {{ category.fournisseur.name }}</h2>
+                {% endfor %}
                 <button class="btn btn-dark" type="submit">Modifier</button>
                 <a href="#" class="btn btn-dark">Voir nos produits</a>
             </div>

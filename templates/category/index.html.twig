@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Catégories {% endblock %}
+
+{% block body %}
+    <<div class="container">
+    <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Catégories</h1>
+
+    {% for category in category %}
+        <div class="row flex" style="text-align: center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5  class="card-title">
+                            <a href="{{ path ('category_detail', {'id': category.id}) }}">{{ category.name }}</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+    <div class="col-md-12 text-center">
+        <a href="{{ path ('create_category') }}" class="btn btn-dark">Créer une catégorie</a>
+    </div>
+    </div>
+{% endblock %}

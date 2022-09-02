@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+
 use App\Entity\Fournisseur;
+use App\Form\CreateFournisseurType;
 use App\Repository\FournisseurRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FournisseurController extends AbstractController
 {
     #[Route('/fournisseur', name: 'fournisseur')]
-    public function do_fournisseur(FournisseurRepository $fournisseurRepository): Response
+    public function displayAllFournisseur(FournisseurRepository $fournisseurRepository): Response
     {
 /**
         $fournisseur= new Fournisseur();
@@ -27,16 +29,16 @@ class FournisseurController extends AbstractController
         $em-> persist($fournisseur);
         $em-> flush();
 **/
-        $fournisseurs = $fournisseurRepository->findAll();
+        $fournisseur = $fournisseurRepository->findAll();
 
         return $this->render('fournisseur/index.html.twig', [
             'controller_name' => 'FournisseurController',
-            'fournisseur' => $fournisseurs
+            'fournisseur' => $fournisseur
         ]);
     }
 
     #[Route('/fournisseur/{id}', name : 'fournisseur_details')]
-    public function FounisseurDetails($id, FournisseurRepository $fournisseurRepository): Response
+    public function fournisseurDetails($id, FournisseurRepository $fournisseurRepository): Response
     {
         $fournisseur=$fournisseurRepository->find($id);
 
@@ -45,8 +47,28 @@ class FournisseurController extends AbstractController
         }
 
         return $this->render('fournisseur/fournisseur_details.html.twig', [
+            'controller_name' => 'FournisseurController',
             'fournisseur' => $fournisseur,
             'id' => $id
+        ]);
+    }
+
+    #[Route('/creer-un-fournisseur', name: 'create_fournisseur')]
+    public function createFournisseur(Request $request, FournisseurRepository $fournisseurRepository): Response
+    {
+        $fournisseur = new Fournisseur();
+        $form = $this->createForm(CreateFournisseurType::class, $fournisseur);
+
+        $form->handleRequest($request);
+
+        if ($form->get('publish')->isClicked()) {
+            $fournisseurRepository->add($fournisseur, true);
+            return $this->redirectToRoute('fournisseur');
+        }
+
+        return $this->render('fournisseur/create.html.twig', [
+            'controller_name' => 'FournisseurController',
+            'form' => $form->createView()
         ]);
     }
 

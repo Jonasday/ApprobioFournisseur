@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ product.name }} {% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ product.name }}</div>
+                <h2>Fournisseur : {{ product.fournisseur.name }}</h2>
+                <p>
+                    {{ product.cost }}
+                    {{ product.selling_price }}
+                    {{ product.selling_price_ttc }}
+                    {{ product.tva }}
+                    {{ product.margin }}
+                    {{ product.category.name }}
+                </p>
+                <a href="{{ path ('product') }}" class="btn btn-dark">Retour</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %} Produits {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Nos produits</h1>
+
+        {% for product in product %}
+            <div class="row flex" style="text-align: center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5  class="card-title">
+                                <a href="{{ path ('product_details', {'id': product.id}) }}">{{ product.name }}</a>
+                            </h5>
+                            <p class="card-text">Fournisseur : {{ product.fournisseur.name }} <br> Catégorie : {{  product.category.name }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        {% endfor %}
+        <div class="col-md-12 text-center">
+            <a href="{{ path ('create_product') }}" class="btn btn-dark" type="submit">Ajouter un produit<a>
+        </div>
+    </div>
+{% endblock %}

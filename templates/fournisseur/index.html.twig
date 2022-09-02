@@ -1,24 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% block title %} Fournisseurs {% endblock %}
+
 {% block body %}
 
         <div class="container">
-            <h1>Les fournisseurs breton</h1>
-            <div class="row flex">
-                {% for fournisseur in fournisseur %}
-                <div class="col-3">
+            <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center"> Fournisseurs</h1>
+
+            {% for fournisseur in fournisseur %}
+                <div class="row flex" style="text-align: center">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <h5  class="card-title">
                                 <a href="{{ path ('fournisseur_details', {'id': fournisseur.id}) }}">{{ fournisseur.name }}</a>
                             </h5>
                             <p class="card-text">{{ fournisseur.city }} {{  fournisseur.postalCode }}</p>
-                            <div class="text-primary">{{ fournisseur.category }}</div>
+                            {#<div class="text-primary">{{ fournisseur.category.nom }}</div>#}
                         </div>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+                <br>
+                {% endfor %}
+            <div class="col-md-12 text-center">
+                <a href="{{ path ('create_fournisseur') }}" class="btn btn-dark" type="submit">Ajouter un fournisseur<a>
+            </div>
         </div>
 
 {% endblock %}
