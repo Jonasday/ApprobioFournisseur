@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Modifer un produit {% endblock %}
+
+{% block body %}
+
+    <h1>Modifier un produit</h1>
+
+    {{ form_start(form) }}
+
+    <div class="row" style="text-align: center">
+        <div class="col-md-12">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {{ form_label(form.cost) }}
+            {{ form_widget(form.cost) }}
+            {{ form_label(form.sellingPrice) }}
+            {{ form_widget(form.sellingPrice) }}
+            {{ form_label(form.margin) }}
+            {{ form_widget(form.margin) }}
+        </div>
+    </div>
+    <div class="row" style="text-align: center">
+        {{ form_label(form.publish) }}
+
+        <a href="{{ path ('product_details', {'id': product.id}) }}">
+            <input class="btn btn-dark"
+                   type="button"
+                   value="Retour">
+        </a>
+    </div>
+
+    {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

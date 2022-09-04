@@ -6,32 +6,26 @@
 
             <h1>Ajouter un produit</h1>
 
-            {{ form_start(form) }}
+
 
             <div class="row" style="text-align: center">
                 <div class="col-md-12">
-                    {{ form_label(form.name) }}
-                    {{ form_widget(form.name) }}
-                    {{ form_label(form.cost) }}
-                    {{ form_widget(form.cost) }}
-                    {{ form_label(form.selling_price) }}
-                    {{ form_widget(form.selling_price) }}
-                    {{ form_label(form.margin) }}
-                    {{ form_widget(form.margin) }}
+                    {{ form_start(form) }}
+
                 </div>
             </div>
-            <div class="row" style="text-align: center">
-                {{ form_label(form.publish) }}
 
-                <a href="{{ path('fournisseur') }}">
-                    <input class="btn btn-dark"
-                           type="button"
-                           value="Retour">
-                </a>
-            </div>
+    <div class="row" style="text-align: center">
 
-            {{ form_end(form) }}
+        {{ form_label(form.publish) }}
+
+        <a href="{{ path('product') }}">
+            <input class="btn btn-dark"
+                   type="button"
+                   value="Retour">
+        </a>
+    </div>
 
         </div>
-
+    {{ form_end(form) }}
 {% endblock %}

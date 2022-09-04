@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
+use App\Form\DeleteCategoryType;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,9 +33,12 @@ class CategoryController extends AbstractController
 
         $form->handleRequest($request);
 
+
         if ($form->get('publish')->isClicked()) {
-            $category_repository->add($category, true);
-            return $this->redirectToRoute('home');
+            if($form->isSubmitted() && $form->isValid()){
+                $category_repository->add($category, true);
+                return $this->redirectToRoute('category');
+            }
         }
 
         return $this->render('category/create.html.twig', [
@@ -43,10 +47,34 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/{id}', name: 'category_detail')]
-    public function categoryDetail($id, Request $request, CategoryRepository $category_repository): Response
+    #[Route('/supprimer-la-categorie/{id}', name: 'delete_category')]
+    public function deleteCategory($id, Request $request, CategoryRepository $category_repository): Response
     {
         $category = $category_repository->find($id);
+        $form = $this->createForm(DeleteCategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+
+        if ($form->get('delete')->isClicked()) {
+            if($form->isSubmitted() && $form->isValid()){
+                $category_repository->remove($category, true);
+                return $this->redirectToRoute('category');
+            }
+        }
+
+        return $this->render('category/delete.html.twig', [
+            'controller_name' => 'CategoryController',
+            'category' => $category,
+            'form' => $form->createView(),
+            'id' => $id
+        ]);
+    }
+
+    #[Route('/categorie/{id}', name: 'category_details')]
+    public function categoryDetail($id, Request $request, CategoryRepository $categoryRepository): Response
+    {
+        $category = $categoryRepository->find($id);
 
         if(!$category){
             throw $this->createNotFoundException();

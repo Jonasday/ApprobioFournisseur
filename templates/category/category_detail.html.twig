@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ fournisseur.name }} {% endblock %}
+{% block title %} Catégorie - {{ category.name }} {% endblock %}
 
 {% block body %}
     <div class="container mt-4">
@@ -8,11 +8,17 @@
             <div class="col-md-12 text-center">
                 <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ category.name }}</div>
 
-                {% for  %}
-                <h2>Liste des fournisseurs : {{ category.fournisseur.name }}</h2>
-                {% endfor %}
-                <button class="btn btn-dark" type="submit">Modifier</button>
-                <a href="#" class="btn btn-dark">Voir nos produits</a>
+                <a href="{{ path ('delete_category', {'id': category.id}) }}">
+                    <input class="btn btn-dark"
+                           type="button"
+                           value="Supprimer la catégorie">
+                </a>
+                <a href="#" class="btn btn-dark">Voir les produits</a>
+                <a href="{{ path('category') }}">
+                    <input class="btn btn-dark"
+                           type="button"
+                           value="Retour">
+                </a>
             </div>
         </div>
     </div>

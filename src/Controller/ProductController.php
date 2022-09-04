@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\CreateProductType;
+use App\Form\DeleteProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\FournisseurRepository;
 use App\Repository\ProductRepository;
@@ -40,6 +41,62 @@ class ProductController extends AbstractController
         return $this->render('product/create.html.twig', [
             'controller_name' => 'ProductController',
             'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/modify_product/{id}', name : 'modify_product')]
+    public function modifyProduct($id,Request $request, ProductRepository $productRepository): Response
+    {
+        $product = $productRepository->find($id);
+
+        if ($product == null) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this->createForm(CreateProductType::class, $product);
+
+
+        $form->handleRequest($request);
+
+        if ($form->get('publish')->isClicked()) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $productRepository->add($product, true);
+                return $this->redirectToRoute('product');
+            }
+        }
+
+        return $this->render('product/modify.html.twig', [
+            'controller_name' => 'ProductController',
+            'product' => $product,
+            'form' => $form->createView(),
+            'id' => $id
+        ]);
+    }
+
+    #[Route('/delete_product/{id}', name : 'delete_product')]
+    public function deleteProduct($id,Request $request, ProductRepository $productRepository): Response
+    {
+        $product = $productRepository->find($id);
+
+        if ($product == null) {
+            throw $this->createNotFoundException();
+        }
+
+        $form = $this->createForm(DeleteProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->get('delete')->isClicked()) {
+            if ($form->isSubmitted() && $form->isValid()) {
+                $productRepository->remove($product, true);
+                return $this->redirectToRoute('product');
+            }
+        }
+
+        return $this->render('product/delete.html.twig', [
+            'controller_name' => 'ProductController',
+            'product' => $product,
+            'form' => $form->createView(),
+            'id' => $id
         ]);
     }
 

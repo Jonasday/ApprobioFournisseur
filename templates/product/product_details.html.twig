@@ -10,12 +10,17 @@
                 <h2>Fournisseur : {{ product.fournisseur.name }}</h2>
                 <p>
                     {{ product.cost }}
-                    {{ product.selling_price }}
-                    {{ product.selling_price_ttc }}
+                    {{ product.sellingPrice }}
+                    {{ product.sellingPriceTtc }}
                     {{ product.tva }}
                     {{ product.margin }}
                     {{ product.category.name }}
+                    Bio : {{ product.bio }}
+                    Commerce équitable : {{ product.commerceEquitable }}
+                    Solidaire : {{ product.solidaire }}
                 </p>
+                <a href="{{ path ('modify_product', {'id': product.id}) }}" class="btn btn-dark">Modifier</a>
+                <a href="{{ path ('delete_product', {'id': product.id}) }}" class="btn btn-dark">Supprimer le produit</a>
                 <a href="{{ path ('product') }}" class="btn btn-dark">Retour</a>
             </div>
         </div>

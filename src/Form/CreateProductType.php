@@ -27,7 +27,7 @@ class CreateProductType extends AbstractType
                 'label' => 'Coût HT :',
                 'required' => true
             ])
-            ->add('selling_price', NumberType::class,[
+            ->add('sellingPrice', NumberType::class,[
                 'label' => 'Prix de vente HT :',
                 'required' => true
             ])

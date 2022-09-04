@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<h1>Suppression de produit</h1>{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="container">
+        <h2>{{ product.name }}</h2>
+            <p>Fournisseur : {{ product.fournisseur.name }}</p>
+            <p>Catégorie : {{ product.fournisseur.name }}</p>
+            <p> Voulez-vous supprimer ce produit ? </p>
+
+                {{ form_widget(form.delete) }}
+
+                <a href="{{ path ('product_details', {'id': product.id}) }}">
+                    <input class="btn btn-success"
+                           type="button"
+                           value="Annuler">
+                </a>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

@@ -9,8 +9,18 @@
                 <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ fournisseur.name }}</div>
                 <h2>Ville : {{ fournisseur.city }}</h2>
                 <p>{{ fournisseur.description }}</p>
-                <button class="btn btn-dark" type="submit">Modifier</button>
+                <a href="{{ path ('modify_fournisseur', {'id': fournisseur.id}) }}" class="btn btn-dark">Modifier</a>
                 <a href="#" class="btn btn-dark">Voir nos produits</a>
+                <a href="{{ path ('delete_fournisseur', {'id': fournisseur.id}) }}">
+                    <input class="btn btn-dark"
+                           type="button"
+                           value="Supprimer le fournisseur">
+                </a>
+                <a href="{{ path('fournisseur') }}">
+                    <input class="btn btn-dark"
+                           type="button"
+                           value="Retour">
+                </a>
             </div>
         </div>
     </div>
