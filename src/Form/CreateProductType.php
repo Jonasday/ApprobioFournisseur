@@ -31,7 +31,7 @@ class CreateProductType extends AbstractType
                 'label' => 'Prix de vente HT :',
                 'required' => true
             ])
-            ->add('selling_price_ttc', NumberType::class,[
+            ->add('sellingPriceTtc', NumberType::class,[
                 'label' => 'Prix de vente TTC :',
                 'required' => true
             ])
@@ -47,7 +47,7 @@ class CreateProductType extends AbstractType
                 'label' => 'Bio ',
                 'required' => false
             ])
-            ->add('commerce_equitable', CheckboxType::class,[
+            ->add('commerceEquitable', CheckboxType::class,[
                 'label' => 'Commerce équitable  ',
                 'required' => false
             ])
@@ -61,6 +61,7 @@ class CreateProductType extends AbstractType
             ])
             ->add('category', EntityType::class,[
                 'class' => Category::class,
+                'label' => 'Catégorie',
                 'choice_label' => 'name',
             ])
 
@@ -69,7 +70,7 @@ class CreateProductType extends AbstractType
                 'attr' =>
                     [
                         'type' => 'submit',
-                        'class' => 'btn btn-dark',
+                        'class' => 'btn btn-success',
                     ]
             ])
         ;

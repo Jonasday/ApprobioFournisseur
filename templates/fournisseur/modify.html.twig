@@ -4,31 +4,83 @@
 
 {% block body %}
 
-    {{ form_start(form) }}
+    <div class="container mt-4">
+    <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Modifier - <span style="color: lightslategrey">{{ fournisseur.name }}</span></h1>
 
-    <div class="row" style="text-align: center">
-        <div class="col-md-12">
+    {{ form_start(form) }}
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
             {{ form_label(form.name) }}
+        </div>
+        <div class="col">
             {{ form_widget(form.name) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
             {{ form_label(form.description) }}
+        </div>
+        <div class="col">
             {{ form_widget(form.description) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
             {{ form_label(form.address) }}
+        </div>
+        <div class="col">
             {{ form_widget(form.address) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
             {{ form_label(form.city) }}
+        </div>
+        <div class="col">
             {{ form_widget(form.city) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
             {{ form_label(form.postal_code) }}
+        </div>
+        <div class="col">
             {{ form_widget(form.postal_code) }}
         </div>
     </div>
-
-    {{ form_widget(form.publish) }}
-    {{ form_end(form) }}
-
-    </a>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.categories) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.categories) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.publish) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.publish) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+    <div class="col-4 offset-md-3">
     <a href="{{ path("fournisseur_details", {'id':fournisseur.id}) }}">
-        <input class="btn btn-dark"
+        <input class="btn btn-danger"
                type="button"
                value="Annuler">
     </a>
+    </div>
+    </div>
+    {{ form_end(form) }}
 
 {% endblock %}

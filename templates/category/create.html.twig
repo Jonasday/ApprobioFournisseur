@@ -5,24 +5,36 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1>Créer une catégorie</h1>
+        <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Créer une catégorie</h1>
 
         {{ form_start(form) }}
 
-        <div class="row" style="text-align: center">
-            <div class="col-md-12">
+        <br/>
+        <div class="row">
+            <div class="col-4 offset-md-3">
                 {{ form_label(form.name) }}
+            </div>
+            <div class="col">
                 {{ form_widget(form.name) }}
             </div>
         </div>
-    <div class="row" style="text-align: center">
+        <br/>
+        <div class="row">
+            <div class="col-4 offset-md-3">
                 {{ form_label(form.publish) }}
-
+            </div>
+            <div class="col">
+                {{ form_widget(form.publish) }}
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-4 offset-md-3">
         <a href="{{ path('category') }}">
-            <input class="btn btn-dark"
+            <input class="btn btn-danger"
                    type="button"
                    value="Retour">
         </a>
+        </div>
     </div>
 
         {{ form_end(form) }}

@@ -7,6 +7,7 @@ use App\Entity\Fournisseur;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,7 @@ class CreateFournisseurType extends AbstractType
                 'label' => 'Nom du fournisseur :',
                 'required' => true,
             ])
-            ->add('description', TextType::class,[
+            ->add('description', TextAreaType::class,[
                 'label' => 'Description :',
                 'required' => false
             ])
@@ -38,6 +39,7 @@ class CreateFournisseurType extends AbstractType
             ])
             ->add('categories', EntityType::class,[
                 'class' => Category::class,
+                'label' => 'Catégorie',
                 'choice_label' => 'name',
                 'mapped' => false
             ])
@@ -47,7 +49,7 @@ class CreateFournisseurType extends AbstractType
                 'attr' =>
                     [
                         'type' => 'submit',
-                        'class' => 'btn btn-dark',
+                        'class' => 'btn btn-success',
                     ]
             ]);
     }

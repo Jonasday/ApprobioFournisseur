@@ -7,21 +7,21 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ product.name }}</div>
-                <h2>Fournisseur : {{ product.fournisseur.name }}</h2>
+                <h2>Fournisseur : <span style="color: lightslategrey">{{ product.fournisseur.name }}</span></h2>
                 <p>
-                    {{ product.cost }}
-                    {{ product.sellingPrice }}
-                    {{ product.sellingPriceTtc }}
-                    {{ product.tva }}
-                    {{ product.margin }}
-                    {{ product.category.name }}
-                    Bio : {{ product.bio }}
-                    Commerce équitable : {{ product.commerceEquitable }}
-                    Solidaire : {{ product.solidaire }}
+                    <span style="color: black">Coût : </span>{{ product.cost }}<br>
+                    <span style="color: black">Prix de vente HT : </span>{{ product.sellingPrice }}<br>
+                    <span style="color: black">Prix de vente TTC : </span>{{ product.sellingPriceTtc }}<br>
+                    <span style="color: black">TVA (en %) : </span>{{ product.tva }}<br>
+                    <span style="color: black">Taux de marge (en %) : </span>{{ product.margin }}<br>
+                    <span style="color: black">Catégorie : </span>{{ product.category.name }}<br>
+                    <span style="color: black">Bio : </span>{{ product.bio }}<br>
+                    <span style="color: black">Commerce équitable : </span>{{ product.commerceEquitable }}<br>
+                    <span style="color: black">Solidaire : </span>{{ product.solidaire }}<br>
                 </p>
-                <a href="{{ path ('modify_product', {'id': product.id}) }}" class="btn btn-dark">Modifier</a>
-                <a href="{{ path ('delete_product', {'id': product.id}) }}" class="btn btn-dark">Supprimer le produit</a>
-                <a href="{{ path ('product') }}" class="btn btn-dark">Retour</a>
+                <a href="{{ path ('modify_product', {'id': product.id}) }}" class="btn btn-primary">Modifier</a>
+                <a href="{{ path ('delete_product', {'id': product.id}) }}" class="btn btn-primary">Supprimer le produit</a>
+                <a href="{{ path ('product') }}" class="btn btn-danger">Retour</a>
             </div>
         </div>
     </div>

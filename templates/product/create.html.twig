@@ -4,28 +4,128 @@
 
 {% block body %}
 
-            <h1>Ajouter un produit</h1>
+    <div class="container mt-4">
+        <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Ajouter un produit</h1>
 
+    {{ form_start(form) }}
 
-
-            <div class="row" style="text-align: center">
-                <div class="col-md-12">
-                    {{ form_start(form) }}
-
-                </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.name) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.name) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.cost) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.cost) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.sellingPrice) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.sellingPrice) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.sellingPriceTtc) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.sellingPriceTtc) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.tva) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.tva) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.margin) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.margin) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.bio) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.bio) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.commerceEquitable) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.commerceEquitable) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.solidaire) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.solidaire) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.fournisseur) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.fournisseur) }}
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-4 offset-md-3">
+            {{ form_label(form.category) }}
+        </div>
+        <div class="col">
+            {{ form_widget(form.category) }}
+        </div>
+    </div>
+    <br/>
+        <div class="row">
+            <div class="col-4 offset-md-3">
+                <br> {{ form_label(form.publish) }}
             </div>
-
-    <div class="row" style="text-align: center">
-
-        {{ form_label(form.publish) }}
-
+            <div class="col">
+                {{ form_widget(form.publish) }}
+            </div>
+    <div class="row">
+        <div class="col-4 offset-md-3">
         <a href="{{ path('product') }}">
-            <input class="btn btn-dark"
+            <input class="btn btn-danger"
                    type="button"
                    value="Retour">
         </a>
-    </div>
-
         </div>
+    </div>
+        </div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}

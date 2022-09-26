@@ -31,7 +31,7 @@ class CategoryType extends AbstractType
                 'attr' =>
                     [
                         'type' => 'submit',
-                        'class' => 'btn btn-dark',
+                        'class' => 'btn btn-success',
                     ]
             ]);
     }

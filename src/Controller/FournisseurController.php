@@ -28,7 +28,7 @@ class FournisseurController extends AbstractController
     #[Route('/fournisseur/{id}', name : 'fournisseur_details')]
     public function fournisseurDetails($id, FournisseurRepository $fournisseurRepository): Response
     {
-        $fournisseur=$fournisseurRepository->find($id);
+        $fournisseur = $fournisseurRepository->find($id);
 
         if(!$fournisseur){
             throw $this->createNotFoundException();

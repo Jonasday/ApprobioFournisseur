@@ -9,18 +9,55 @@
                 <div class="text-dark" style="font-size: 4rem; font-weight: bold;"> {{ category.name }}</div>
 
                 <a href="{{ path ('delete_category', {'id': category.id}) }}">
-                    <input class="btn btn-dark"
+                    <input class="btn btn-primary"
                            type="button"
                            value="Supprimer la catégorie">
                 </a>
-                <a href="#" class="btn btn-dark">Voir les produits</a>
                 <a href="{{ path('category') }}">
-                    <input class="btn btn-dark"
+                    <input class="btn btn-danger"
                            type="button"
                            value="Retour">
                 </a>
             </div>
         </div>
+    <div class="table_title">
+        <h2 style="text-align: center; margin-top: 150px">Liste des produits</h2>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Produit</th>
+            <th scope="col" style="text-align: center">Coût HT</th>
+            <th scope="col" style="text-align: center">Prix de vente HT</th>
+            <th scope="col" style="text-align: center">Prix de vente TTC</th>
+            <th scope="col" style="text-align: center">TVA (en %)</th>
+            <th scope="col" style="text-align: center">Taux de marge (en %)</th>
+            <th scope="col" style="text-align: center">Bio</th>
+            <th scope="col" style="text-align: center">Commerce équitable</th>
+            <th scope="col" style="text-align: center">Solidaire</th>
+            <th scope="col" style="text-align: center">Fournisseur</th>
+            <th scope="col" style="text-align: center">Catégorie</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in category.lstProduct %}
+            <tr>
+                <th scope="row"> {{ product.name }}</th>
+                <td style="text-align: center"> {{ product.cost }}</td>
+                <td style="text-align: center"> {{ product.sellingPrice }}</td>
+                <td style="text-align: center"> {{ product.sellingPriceTtc }}</td>
+                <td style="text-align: center"> {{ product.tva }}</td>
+                <td style="text-align: center"> {{ product.margin }}</td>
+                <td style="text-align: center"> {{ product.bio ? 'Oui' : 'Non' }}</td>
+                <td style="text-align: center"> {{ product.commerceEquitable ? 'Oui' : 'Non' }}</td>
+                <td style="text-align: center"> {{ product.solidaire ? 'Oui' : 'Non' }}</td>
+                <td style="text-align: center"> {{ product.fournisseur.name }}</td>
+                <td style="text-align: center"> {{ product.category.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
     </div>
 
 {% endblock %}

@@ -3,8 +3,16 @@
     {% block title %} Produits {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container mt-4">
         <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Nos produits</h1>
+
+        <div class="form" style="text-align: center; margin: 20px 0 20px 0">
+            {{ form_start(form) }}
+                {{ form_row(form.minPrice) }}
+                {{ form_row(form.maxPrice) }}
+                {{ form_row(form.submit) }}
+            {{ form_end(form) }}
+        </div>
 
         {% for product in product %}
             <div class="row flex" style="text-align: center">

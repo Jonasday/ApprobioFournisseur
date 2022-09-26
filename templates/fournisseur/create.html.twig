@@ -5,35 +5,85 @@
 {% block body %}
 
         <div class="container mt-4">
-            <h1>Ajouter un fournisseur</h1>
+            <h1 class="text-dark" style="font-size: 4rem; font-weight: bold; text-align: center">Ajouter un fournisseur</h1>
 
             {{ form_start(form) }}
-
-            <div class="row" style="text-align: center">
-                <div class="col-md-12">
-                    {{ form_label(form.name) }}
-                    {{ form_widget(form.name) }}
+            <br/>
+                    <div class="row">
+                        <div class="col-4 offset-md-3">
+                            {{ form_label(form.name) }}
+                        </div>
+                        <div class="col">
+                            {{ form_widget(form.name) }}
+                        </div>
+                    </div>
+            <br/>
+            <div class="row">
+                <div class="col-4 offset-md-3">
                     {{ form_label(form.description) }}
+                </div>
+                <div class="col">
                     {{ form_widget(form.description) }}
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-4 offset-md-3">
                     {{ form_label(form.address) }}
+                </div>
+                <div class="col">
                     {{ form_widget(form.address) }}
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-4 offset-md-3">
                     {{ form_label(form.city) }}
+                </div>
+                <div class="col">
                     {{ form_widget(form.city) }}
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-4 offset-md-3">
                     {{ form_label(form.postal_code) }}
+                </div>
+                <div class="col">
                     {{ form_widget(form.postal_code) }}
                 </div>
             </div>
-            <div class="row" style="text-align: center">
-                {{ form_label(form.publish) }}
-
-                <a href="{{ path('fournisseur') }}">
-                    <input class="btn btn-dark"
-                           type="button"
-                           value="Retour">
-                </a>
+            <br/>
+            <div class="row">
+                <div class="col-4 offset-md-3">
+                    {{ form_label(form.categories) }}
+                </div>
+                <div class="col">
+                    {{ form_widget(form.categories) }}
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-4 offset-md-3">
+                   <br> {{ form_label(form.publish) }}
+                </div>
+                <div class="col">
+                    {{ form_widget(form.publish) }}
+                </div>
+                <div class="row">
+                    <div class="col-4 offset-md-3">
+                    <a href="{{ path('fournisseur') }}">
+                        <input class="btn btn-danger"
+                               type="button"
+                               value="Retour">
+                    </a>
+                    </div>
+                </div>
             </div>
 
             {{ form_end(form) }}
 
         </div>
+
 {% endblock %}
+

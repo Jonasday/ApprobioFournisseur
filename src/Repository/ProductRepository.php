@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Entity\ProductSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -42,17 +44,49 @@ class ProductRepository extends ServiceEntityRepository
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByBio($isBio): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.bio = :true')
+            ->setParameter('true', $isBio)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(25)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+        /**
+        * @return Query
+        */
+    public function findAllVisible(ProductSearch $search): Query
+    {
+        $query = $this->findAll();
+
+
+
+        return $query->getQuery();
+
+    }
+
+    public function filterFormCustomQuery(ProductSearch $search): array
+    {
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->setMaxResults(50);
+
+        if ($search->getMinPrice()){
+            $queryBuilder->andWhere('p.selling_price_ttc >= :minprice' )
+                ->setParameter('minprice', $search->getMinPrice());
+        }
+
+        if ($search->getMaxPrice()){
+            $queryBuilder->andWhere('p.selling_price_ttc <= :maxprice' )
+                ->setParameter('maxprice', $search->getMaxPrice());
+        }
+        $query = $queryBuilder->getQuery();
+        return $query->getResult();
+        }
+
 
 //    public function findOneBySomeField($value): ?Product
 //    {

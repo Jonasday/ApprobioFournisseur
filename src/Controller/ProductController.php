@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\ProductSearch;
 use App\Form\CreateProductType;
 use App\Form\DeleteProductType;
+use App\Form\ProductSearchType;
 use App\Repository\CategoryRepository;
 use App\Repository\FournisseurRepository;
 use App\Repository\ProductRepository;
@@ -16,13 +18,24 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/nos-produits', name: 'product')]
-    public function displayAllProduct(ProductRepository $productRepository): Response
+    public function displayAllProduct(ProductRepository $productRepository, Request $request): Response
     {
-        $product = $productRepository->findAll();
+        $search = new ProductSearch();
 
+        $form = $this->createForm(ProductSearchType::class, $search);
+        $product = $productRepository->findAll();
+        $form->handleRequest($request);
+
+        //$product = $productRepository->findAll();
+
+        if($form->isSubmitted() && $form->isValid()){
+            $product = $productRepository->filterFormCustomQuery($search);
+        }
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
-            'product' => $product
+            'product' => $product,
+            'search' => $search,
+            'form' => $form->createView()
         ]);
     }
 
